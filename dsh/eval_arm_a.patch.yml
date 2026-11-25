@@ -1,0 +1,13 @@
+# DeepSeek Harness (dsh) patch for Arm A (strong baseline without claimrev MCP)
+# and Arm C's isolated cold-start reviewer.
+# Uses the EXACT same model/provider as Arm B/C, with isolated session storage.
+- id: agent-default-model
+  name: "@deepseek-ai/dsh-agent-default-model"
+  config:
+    provider: !!js process.env.DSH_PROVIDER || 'deepseek-account'
+    model: !!js process.env.DSH_MODEL || 'deepseek-flash'
+
+- id: session-persistence-jsonl
+  name: "@deepseek-ai/dsh-session-persistence-jsonl"
+  config:
+    root: !!js process.env.CLAIMREV_DSH_SESSIONS_DIR || dshHomePath('sessions')
